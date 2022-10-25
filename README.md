@@ -20,3 +20,16 @@ sentiment analysis with low-resource languages.
 6. Week 6 (12/04/2022) Test mBERT on low-resource language Tweet Sentiment Analysis.
 Test ELECTRA on low-resource language Tweet Sentiment.
 7. Week 7 (12/11/2022) Finish Evaluations and prepare final report.
+
+## Data
+
+I will be using datasets in Slavic languages from CLARIN to perform my studies. These are standard
+.csv files with the tweet and an ID (-1, 0, 1) to indicate negative, neutral, and positive tweets. To
+compare to Galeshcuk’s findings, I will be using corpora in Polish, Slovenian, and Croatian. These
+languages belong to the Indo-European family, but are members of the Slavic branch, which make
+them share fewer ties to English than the Latin based languages like Spanish or French.
+
+The dataset comprises 2794 tweets in Polish (1397 positive and 1397 negative), 4272 tweets in
+Slovenian (2312 positive and 1950 negative) and 3554 tweets in Croatian (2129 positive and 1425
+negative)
+

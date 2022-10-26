@@ -1,4 +1,4 @@
-# Lost in Transfer and Translation
+# Lost in Translation and Transfer
 
 Sentiment analysis has been a prominent topic of research in numerous areas of application like journalism, marketing, finance, etc. In recent years, data sources rich with opinions have become widely available due to the prominence of social networks. However, some data reflects highly-resourced languages like English, but is found to be lacking in other low-resource languages. As the world becomes more interconnected through global communications, it is becoming more and more imperative to analyze data from all over the world. Lexicons are not always available in other languages (marking them "low-resource languages") and it remains an expensive task to construct and label them. 
 

@@ -12,7 +12,6 @@ I would like to explore whether there are any semantic details lost in the trans
 ## Anticipated Schedule:
 1. Week 1 (10/30/2022) Process Data (clean text) and implement tokenization.
 2. Week 2 (11/06/2022) Implement BERT without frozen layers. Acquire baseline performance.
-2
 3. Week 3 (11/13/2022) Implement BERT with varying levels of frozen layers.
 4. Week 4 (11/20/2022) Evaluate performance on different numbers of unfrozen layers for Tweet
 sentiment analysis with low-resource languages.
@@ -29,7 +28,39 @@ compare to Galeshcuk’s findings, I will be using corpora in Polish, Slovenian,
 languages belong to the Indo-European family, but are members of the Slavic branch, which make
 them share fewer ties to English than the Latin based languages like Spanish or French.
 
-The dataset comprises 2794 tweets in Polish (1397 positive and 1397 negative), 4272 tweets in
-Slovenian (2312 positive and 1950 negative) and 3554 tweets in Croatian (2129 positive and 1425
-negative)
+### Preprocessing
 
+The CLARIN data only contains TweetIDs and Labels. It is necessary to use the TwitterAPI to acquire the tweet text. Once text is acquired, preprocessing proceeds as follows:
+
+1. All neutral tweets are removed (keeping only positive and negative)
+2. Positive and Negative tweets are balanced
+3. URLs are removed
+4. Emojis are removed
+5. Punctuation is removed
+6. Dashes and extra spaces are removed
+
+Standard procedure also removes stop words in English sentiment tasks, but as we are no longer in English, I do not remove stop words for this project.
+
+Polish:
+
+* 49460 Positive, 49460 Negative
+* Training: 74190 tweets
+* Testing: 24730 tweets
+
+Croatian: 
+
+* 31559 Positive, 31559 Negative
+* Training: 47338 tweets
+* Testing: 15780 tweets
+
+Slovenian: 
+
+* 20425 Positive, 20425 Negative
+* Training: 30637
+* Testing: 10213
+
+
+## Files
+
+* getTweets.py: python script using Twitter API to acquire tweets using IDs. Stores tweets and sentiment labels in .txt files.
+* preproccess.py: python script to preprocess the languages and creates a pandas dataframe for processed tweets and corresponding labels.

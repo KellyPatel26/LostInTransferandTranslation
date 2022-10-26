@@ -10,15 +10,15 @@ I would like to explore whether there are any semantic details lost in the trans
 
 
 ## Anticipated Schedule:
-1. Week 1 (10/30/2022) Process Data (clean text) and implement tokenization.
-2. Week 2 (11/06/2022) Implement BERT without frozen layers. Acquire baseline performance.
-3. Week 3 (11/13/2022) Implement BERT with varying levels of frozen layers.
-4. Week 4 (11/20/2022) Evaluate performance on different numbers of unfrozen layers for Tweet
+[x] Week 1 (10/30/2022) Process Data (clean text) and implement tokenization.
+[ ] Week 2 (11/06/2022) Implement BERT without frozen layers. Acquire baseline performance.
+[ ] Week 3 (11/13/2022) Implement BERT with varying levels of frozen layers.
+[ ] Week 4 (11/20/2022) Evaluate performance on different numbers of unfrozen layers for Tweet
 sentiment analysis with low-resource languages.
-5. Week 5 (11/27/2022) Debugging and/or further ablation studies space.
-6. Week 6 (12/04/2022) Test mBERT on low-resource language Tweet Sentiment Analysis.
+[ ] Week 5 (11/27/2022) Debugging and/or further ablation studies space.
+[ ] Week 6 (12/04/2022) Test mBERT on low-resource language Tweet Sentiment Analysis.
 Test ELECTRA on low-resource language Tweet Sentiment.
-7. Week 7 (12/11/2022) Finish Evaluations and prepare final report.
+[ ] Week 7 (12/11/2022) Finish Evaluations and prepare final report.
 
 ## Data
 

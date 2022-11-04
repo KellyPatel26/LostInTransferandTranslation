@@ -11,8 +11,8 @@ I would like to explore whether there are any semantic details lost in the trans
 
 ## Anticipated Schedule:
 - [x] Week 1 (10/30/2022) Process Data (clean text) and implement tokenization.
-- [ ] Week 2 (11/06/2022) Implement BERT without frozen layers. Acquire baseline performance.
-- [ ] Week 3 (11/13/2022) Implement BERT with varying levels of frozen layers.
+- [x] Week 2 (11/06/2022) Implement BERT without frozen layers. Acquire baseline performance.
+- [x] Week 3 (11/13/2022) Implement BERT with varying levels of frozen layers.
 - [ ] Week 4 (11/20/2022) Evaluate performance on different numbers of unfrozen layers for Tweet
 sentiment analysis with low-resource languages.
 - [ ] Week 5 (11/27/2022) Debugging and/or further ablation studies space.

@@ -89,7 +89,7 @@ def make_csv(tweets_file, labels_file):
             if tmp not in data:
                 data.append(tmp)
                 
-    print(len(data), positive, negative)
+    # print(len(data), positive, negative)
 
     df = pd.DataFrame(data, columns=["Tweet", "Label"])
 
@@ -119,7 +119,7 @@ def get_data():
     df['Tweet']= df['Tweet'].str.replace('—', ' ')
     df['Tweet']= df['Tweet'].str.replace('-', ' ')
 
-    print(df.head(100))
+    # print(df.head(100))
     # split into training and testing
     X_train, X_test, y_train, y_test = train_test_split(df['Tweet'],df['Label'], stratify=df['Label'])
     
@@ -132,4 +132,5 @@ if __name__ == "__main__":
 
 
     x_train, y_train, x_test, y_test = get_data()
-    print(len(x_train), len(y_train), len(x_test), len(y_test))
+    # print(len(x_train), len(y_train), len(x_test), len(y_test))
+    # print(x_train.values.tolist())

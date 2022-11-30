@@ -13,9 +13,9 @@ I would like to explore whether there are any semantic details lost in the trans
 - [x] Week 1 (10/30/2022) Process Data (clean text) and implement tokenization.
 - [x] Week 2 (11/06/2022) Implement BERT without frozen layers. Acquire baseline performance.
 - [x] Week 3 (11/13/2022) Implement BERT with varying levels of frozen layers.
-- [ ] Week 4 (11/20/2022) Evaluate performance on different numbers of unfrozen layers for Tweet
+- [x] Week 4 (11/20/2022) Evaluate performance on different numbers of unfrozen layers for Tweet
 sentiment analysis with low-resource languages.
-- [ ] Week 5 (11/27/2022) Debugging and/or further ablation studies space.
+- [x] Week 5 (11/27/2022) Debugging and/or further ablation studies space.
 - [ ] Week 6 (12/04/2022) Test mBERT on low-resource language Tweet Sentiment Analysis.
 Test ELECTRA on low-resource language Tweet Sentiment.
 - [ ] Week 7 (12/11/2022) Finish Evaluations and prepare final report.
@@ -59,8 +59,15 @@ Slovenian:
 * Training: 30637
 * Testing: 10213
 
+English:
+* 10000 Positive, 9999 Negative
+* Training: 14997
+* Testing: 5000
 
 ## Files
 
 * getTweets.py: python script using Twitter API to acquire tweets using IDs. Stores tweets and sentiment labels in .txt files.
 * preproccess.py: python script to preprocess the languages and creates a pandas dataframe for processed tweets and corresponding labels.
+* model.py: buggy BERT model
+* model2.py: buggy BERT model
+* model3.py: model used for all testing. Contains function to freeze layers and train model. ONLY USE THIS ONE.

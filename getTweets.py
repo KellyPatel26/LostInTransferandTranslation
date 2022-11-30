@@ -7,9 +7,12 @@ import os
 import json
 import csv
 
-API_KEY = "YOUR API KEY"
-API_KEY_SECRET = "YOUR SECRET API KEY"
-Bearer_Token = "YOUR BEARER TOKEN"
+# API_KEY = "YOUR API KEY"
+# API_KEY_SECRET = "YOUR SECRET API KEY"
+# Bearer_Token = "YOUR BEARER TOKEN"
+API_KEY = "5kctWxsh7bsSK8gf3UNKI1OW8"
+API_KEY_SECRET = "pcDHkXQCyQ7gu1LjP7W9bpiC8NWhtzdoYbQQLv8U0raBYjwHYH"
+Bearer_Token = "AAAAAAAAAAAAAAAAAAAAAFRFigEAAAAAcvYhSXD0pOv0gJK%2FrxKGGgfpBhI%3DMnpYFjb5saB6Uor0HbpqflGBWi6D50ukGkK4YtNfH8LmW71B7X"
 
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
@@ -48,8 +51,9 @@ def main():
 
     
     # filename = "data/Croatian_Twitter_sentiment.csv"    # Croatian data
-    filename = "data/Slovenian_Twitter_sentiment.csv"  # Slovenian data
+    # filename = "data/Slovenian_Twitter_sentiment.csv"  # Slovenian data
     #filename = "data/Polish_Twitter_sentiment.csv"    # Croatian data
+    filename = "data/English_Twitter_sentiment.csv"     # English data
     df = pd.read_csv(filename)
 
     ids_list = df.TweetID
@@ -59,7 +63,7 @@ def main():
 
     tweet_text = []
     tweet_labels = []
-    for i in range(122400, len(ids_list), 100):
+    for i in range(89700, len(ids_list), 100):
         id_batch = ids_list[i:i+100]
         id_batch = [str(id) for id in id_batch]
         ids = "ids="+",".join(id_batch)
@@ -69,7 +73,7 @@ def main():
         # print(json.dumps(json_response, indent=4, sort_keys=False))
         # print(json_response["data"])
         print(i)
-        with open("slovenian_tweets.txt", "a", encoding='utf-8') as file1, open("slovenian_labels.txt", "a") as file2:
+        with open("english_tweets.txt", "a", encoding='utf-8') as file1, open("english_labels.txt", "a") as file2:
             for entry in json_response["data"]:
                 tweet_text.append(entry["text"])
                 tweet_labels.append(labels[entry["id"]])

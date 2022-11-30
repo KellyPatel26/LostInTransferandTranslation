@@ -5,6 +5,13 @@ import os
 from sklearn.model_selection import train_test_split
 import re
 import string 
+import tensorflow as tf
+import shutil
+from transformers import InputExample, InputFeatures
+from transformers import BertTokenizer, TFBertModel
+
+DATA_COLUMN = 'Tweet'
+LABEL_COLUMN = 'Label'
 
 def balance(data):
     '''
@@ -94,7 +101,7 @@ def make_csv(tweets_file, labels_file):
     df = pd.DataFrame(data, columns=["Tweet", "Label"])
 
     # print(df.head(15))
-    df.to_csv("processed_slovenian_tweets.csv", index=False)
+    df.to_csv("data/processed_slovenian_tweets.csv", index=False)
 
 
 def get_data():
@@ -120,17 +127,112 @@ def get_data():
     df['Tweet']= df['Tweet'].str.replace('-', ' ')
 
     # print(df.head(100))
+    # print(len(df))
     # split into training and testing
     X_train, X_test, y_train, y_test = train_test_split(df['Tweet'],df['Label'], stratify=df['Label'])
-    
+    # return df
     return X_train, y_train, X_test, y_test
+
+def convert_data_to_examples(train, test, DATA_COLUMN, LABEL_COLUMN): 
+    InputExample(guid=None,
+            text_a = "Hello, world",
+            text_b = None,
+            label = 1)
+    train_InputExamples = train.apply(lambda x: InputExample(guid=None, # Globally unique ID for bookkeeping, unused in this case
+                                                            text_a = x[DATA_COLUMN], 
+                                                            text_b = None,
+                                                            label = x[LABEL_COLUMN]), axis = 1)
+
+    validation_InputExamples = test.apply(lambda x: InputExample(guid=None, # Globally unique ID for bookkeeping, unused in this case
+                                                            text_a = x[DATA_COLUMN], 
+                                                            text_b = None,
+                                                            label = x[LABEL_COLUMN]), axis = 1)
+    
+    return train_InputExamples, validation_InputExamples
+
+  
+  
+def convert_examples_to_tf_dataset(examples, tokenizer, max_length=300):
+    features = [] # -> will hold InputFeatures to be converted later
+
+    for e in examples:
+        # Documentation is really strong for this method, so please take a look at it
+        input_dict = tokenizer.encode_plus(
+            e.text_a,
+            add_special_tokens=True,
+            max_length=max_length, # truncates if len(s) > max_length
+            return_token_type_ids=True,
+            return_attention_mask=True,
+            pad_to_max_length=True, # pads to the right by default # CHECK THIS for pad_to_max_length
+            truncation=True
+        )
+
+        input_ids, token_type_ids, attention_mask = (input_dict["input_ids"],
+            input_dict["token_type_ids"], input_dict['attention_mask'])
+
+        features.append(
+            InputFeatures(
+                input_ids=input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids, label=e.label
+            )
+        )
+
+    def gen():
+        for f in features:
+            yield (
+                {
+                    "input_ids": f.input_ids,
+                    "attention_mask": f.attention_mask,
+                    "token_type_ids": f.token_type_ids,
+                },
+                f.label,
+            )
+
+    return tf.data.Dataset.from_generator(
+        gen,
+        ({"input_ids": tf.int32, "attention_mask": tf.int32, "token_type_ids": tf.int32}, tf.int64),
+        (
+            {
+                "input_ids": tf.TensorShape([None]),
+                "attention_mask": tf.TensorShape([None]),
+                "token_type_ids": tf.TensorShape([None]),
+            },
+            tf.TensorShape([]),
+        ),
+    )
+
+
+
+
 
 if __name__ == "__main__":
     # make_csv("polish_tweets.txt", "polish_labels.txt")
     # make_csv("croatian_tweets.txt", "croatian_labels.txt")
     # make_csv("slovenian_tweets.txt", "slovenian_labels.txt")
+    # make_csv("english_tweets.txt", "english_labels.txt")
 
 
-    x_train, y_train, x_test, y_test = get_data()
+
+    # x_train, y_train, x_test, y_test = get_data()
     # print(len(x_train), len(y_train), len(x_test), len(y_test))
     # print(x_train.values.tolist())
+
+
+    # MODEL_NAME = 'bert-base-multilingual-cased'
+    # tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
+    # model = TFBertModel.from_pretrained(MODEL_NAME)
+
+    
+    # data = get_data()
+    # train = data[0:30000]
+    # test = data[30000:]
+    # train_InputExamples, validation_InputExamples = convert_data_to_examples(train, 
+    #                                                                        test, 
+    #                                                                        'Tweet', 
+    #                                                                        'Label')
+
+    # print(train_InputExamples)
+    # train_data = convert_examples_to_tf_dataset(list(train_InputExamples), tokenizer)
+    # validation_data = convert_examples_to_tf_dataset(list(validation_InputExamples), tokenizer)
+    
+    # print(train_data)
+    print("Preprocessing Complete")

@@ -7,12 +7,9 @@ import os
 import json
 import csv
 
-# API_KEY = "YOUR API KEY"
-# API_KEY_SECRET = "YOUR SECRET API KEY"
-# Bearer_Token = "YOUR BEARER TOKEN"
-API_KEY = "5kctWxsh7bsSK8gf3UNKI1OW8"
-API_KEY_SECRET = "pcDHkXQCyQ7gu1LjP7W9bpiC8NWhtzdoYbQQLv8U0raBYjwHYH"
-Bearer_Token = "AAAAAAAAAAAAAAAAAAAAAFRFigEAAAAAcvYhSXD0pOv0gJK%2FrxKGGgfpBhI%3DMnpYFjb5saB6Uor0HbpqflGBWi6D50ukGkK4YtNfH8LmW71B7X"
+API_KEY = "YOUR API KEY"
+API_KEY_SECRET = "YOUR SECRET API KEY"
+Bearer_Token = "YOUR BEARER TOKEN"
 
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'

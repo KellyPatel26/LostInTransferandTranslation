@@ -95,7 +95,7 @@ if __name__ == '__main__':
     ds_test_encoded = encode_examples(ds_test).batch(BATCH_SIZE)
 
     # Freeze layers in BERT
-    n = 10
+    n = 12
     freeze(bert, n)
 
     # Initializing input, attention mask for BERT

@@ -101,12 +101,12 @@ def make_csv(tweets_file, labels_file):
     df = pd.DataFrame(data, columns=["Tweet", "Label"])
 
     # print(df.head(15))
-    df.to_csv("data/processed_slovenian_tweets.csv", index=False)
+    df.to_csv("data/processed_croatian_tweets.csv", index=False)
 
 
 def get_data():
 
-    df = pd.read_csv("data/processed_slovenian_tweets.csv", encoding="ISO-8859-1")
+    df = pd.read_csv("data/processed_croatian_tweets.csv", encoding="ISO-8859-1")
     # we need to even this out
     df = balance(df)
     # remove URLS

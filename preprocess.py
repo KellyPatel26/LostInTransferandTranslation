@@ -101,12 +101,12 @@ def make_csv(tweets_file, labels_file):
     df = pd.DataFrame(data, columns=["Tweet", "Label"])
 
     # print(df.head(15))
-    df.to_csv("data/processed_croatian_tweets.csv", index=False)
+    df.to_csv("data/processed_slovenian_tweets.csv", index=False)
 
 
 def get_data():
 
-    df = pd.read_csv("data/processed_croatian_tweets.csv", encoding="ISO-8859-1")
+    df = pd.read_csv("data/processed_slovenian_tweets.csv", encoding="ISO-8859-1")
     # we need to even this out
     df = balance(df)
     # remove URLS
@@ -131,7 +131,7 @@ def get_data():
     # split into training and testing
     X_train, X_test, y_train, y_test = train_test_split(df['Tweet'],df['Label'], stratify=df['Label'])
     # return df
-    return X_train, y_train, X_test, y_test
+    return X_train[0:15000], y_train[0:15000], X_test[0:5000], y_test[0:5000]
 
 def convert_data_to_examples(train, test, DATA_COLUMN, LABEL_COLUMN): 
     InputExample(guid=None,

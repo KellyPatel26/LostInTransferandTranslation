@@ -87,6 +87,7 @@ def graph(history):
 if __name__ == '__main__':
     # Preprocessing
     X_train_text, y_train, X_test_text, y_test = get_data()
+    print(len(X_train_text), len(y_train), len(X_test_text), len(y_test))
     start = time.time()
 
     ds_train = zip(X_train_text, y_train)
@@ -95,13 +96,13 @@ if __name__ == '__main__':
     ds_test_encoded = encode_examples(ds_test).batch(BATCH_SIZE)
 
     # Freeze layers in BERT
-    n = 12
-    freeze(bert, n)
+    n = 2
+    # freeze(bert, n)
 
     # Initializing input, attention mask for BERT
     print(bert.summary())
     # recommended learning rate for Adam 5e-5, 3e-5, 2e-5
-    learning_rate = 2e-5
+    learning_rate = 1e-5
     # multiple epochs might be better as long as we will not overfit the model
     number_of_epochs = 2
 

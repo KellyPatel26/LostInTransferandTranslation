@@ -16,9 +16,8 @@ I would like to explore whether there are any semantic details lost in the trans
 - [x] Week 4 (11/20/2022) Evaluate performance on different numbers of unfrozen layers for Tweet
 sentiment analysis with low-resource languages.
 - [x] Week 5 (11/27/2022) Debugging and/or further ablation studies space.
-- [ ] Week 6 (12/04/2022) Test mBERT on low-resource language Tweet Sentiment Analysis.
-Test ELECTRA on low-resource language Tweet Sentiment.
-- [ ] Week 7 (12/11/2022) Finish Evaluations and prepare final report.
+- [x] Week 6 (12/04/2022) Complete Analysis
+- [x] Week 7 (12/11/2022) Finish Evaluations and prepare final report.
 
 ## Data
 
